@@ -38,10 +38,12 @@ public class WSTelegramBot extends TelegramWebhookBot {
 
     @Override
     public BotApiMethod<?> onWebhookUpdateReceived(Update update) {
+        log.info("WSTelegramBot.onWebhookUpdateReceived Update: " + update.toString());
         return handleUpdate(update);
     }
 
     public SendMessage handleUpdate(Update update) {
+        log.info("handleUpdate");
         SendMessage replyMessage = null;
         Message message = update.getMessage();
         if (message != null && message.hasText()) {
@@ -49,7 +51,6 @@ public class WSTelegramBot extends TelegramWebhookBot {
                     message.getFrom().getUserName(), message.getChatId(), message.getText());
             replyMessage = new SendMessage(update.getChatMember().getChat().getId().toString(), "ПОлучено");
         }
-
         return replyMessage;
     }
 }

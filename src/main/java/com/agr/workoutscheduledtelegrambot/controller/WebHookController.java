@@ -20,6 +20,7 @@ public class WebHookController {
 
     @RequestMapping(value = "/", method = RequestMethod.POST)
     public BotApiMethod<?> onUpdateReceived(@RequestBody Update update) {
+        log.info("WebHookController.onUpdateReceived Update: " + update.toString());
         return bot.onWebhookUpdateReceived(update);
     }
 }
