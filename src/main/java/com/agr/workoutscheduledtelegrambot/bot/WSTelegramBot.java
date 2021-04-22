@@ -49,7 +49,7 @@ public class WSTelegramBot extends TelegramWebhookBot {
         if (message != null && message.hasText()) {
             log.info("New message from User:{}, chatId: {},  with text: {}",
                     message.getFrom().getUserName(), message.getChatId(), message.getText());
-            replyMessage = new SendMessage(update.getChatMember().getChat().getId().toString(), "ПОлучено");
+            replyMessage = new SendMessage(message.getChatId().toString(), "ПОлучено");
         }
         return replyMessage;
     }
