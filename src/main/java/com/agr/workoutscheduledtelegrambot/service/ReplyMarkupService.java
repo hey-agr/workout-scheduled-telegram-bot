@@ -8,26 +8,17 @@ import org.telegram.telegrambots.meta.api.objects.replykeyboard.ReplyKeyboard;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.InlineKeyboardButton;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 @Service
 public class ReplyMarkupService {
     public ReplyKeyboard getReplyKeyboard(ChatDataModel chatDataModel) {
-        List<List<InlineKeyboardButton>> rowList = new ArrayList<>();
         InlineKeyboardMarkup inlineKeyboardMarkup = new InlineKeyboardMarkup();
-        switch (chatDataModel.getChatState()) {
-            case MAIN_MENU: {
-                rowList.addAll(getMainMenuItems());
-                break;
-            }
-
-        }
-        inlineKeyboardMarkup.setKeyboard(rowList);
+        inlineKeyboardMarkup.setKeyboard(getMainMenuItems());
         return inlineKeyboardMarkup;
     }
 
-    private Collection<? extends List<InlineKeyboardButton>> getMainMenuItems() {
+    private List<List<InlineKeyboardButton>> getMainMenuItems() {
         List<List<InlineKeyboardButton>> mainMenuItems = new ArrayList<>();
 
         ArrayList<InlineKeyboardButton> trainingProgramItems = new ArrayList<>();
