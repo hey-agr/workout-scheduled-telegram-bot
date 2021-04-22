@@ -2,10 +2,7 @@ package com.agr.workoutscheduledtelegrambot.controller;
 
 import com.agr.workoutscheduledtelegrambot.bot.WSTelegramBot;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.telegram.telegrambots.meta.api.methods.BotApiMethod;
 import org.telegram.telegrambots.meta.api.objects.Update;
 
@@ -22,5 +19,10 @@ public class WebHookController {
     public BotApiMethod<?> onUpdateReceived(@RequestBody Update update) {
         log.info("WebHookController.onUpdateReceived Update: " + update.toString());
         return bot.onWebhookUpdateReceived(update);
+    }
+
+    @GetMapping("/test")
+    public String test() {
+        return "Test controller accessed";
     }
 }
