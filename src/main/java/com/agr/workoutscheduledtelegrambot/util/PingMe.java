@@ -22,7 +22,9 @@ public class PingMe {
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
             connection.connect();
             connection.disconnect();
-        } catch (IOException ignored) { }
+        } catch (IOException e) {
+            log.info("PING ERROR: " + e.getMessage());
+        }
     }
 }
 
