@@ -21,15 +21,13 @@ public class ReplyMarkupService {
     private List<List<InlineKeyboardButton>> getMainMenuItems() {
         List<List<InlineKeyboardButton>> mainMenuItems = new ArrayList<>();
 
-        ArrayList<InlineKeyboardButton> trainingProgramItems = new ArrayList<>();
         InlineKeyboardButton trainingProgramButton = new InlineKeyboardButton("Программы тренировок");
         trainingProgramButton.setCallbackData(ChatState.TRAINING_PROGRAMS.name());
-        mainMenuItems.add(trainingProgramItems);
+        mainMenuItems.add(List.of(trainingProgramButton));
 
-        ArrayList<InlineKeyboardButton> currentTrainingProgramItems = new ArrayList<>();
         InlineKeyboardButton currentTrainingProgram = new InlineKeyboardButton("Текущая тренировка");
         currentTrainingProgram.setCallbackData(ChatState.CURRENT_TRAINING_PROGRAM.name());
-        mainMenuItems.add(currentTrainingProgramItems);
+        mainMenuItems.add(List.of(currentTrainingProgram));
 
         return mainMenuItems;
     }

@@ -21,12 +21,14 @@ public class ChatDataMessageHandler {
 
     public SendMessage handleMessage(Long chatId, String data) {
         ChatDataModel chatData = chatDataCacheService.getCache(chatId);
-        SendMessage reply = new SendMessage(chatId.toString(), replyTextService.getReplyMessage(chatData));
-        reply.setReplyMarkup(replyMarkupService.getReplyKeyboard(chatData));
         if (isValidData(data)) {
             chatData.setChatState(ChatState.valueOf(data));
         }
-        return reply;
+        return SendMessage.builder()
+                .chatId(String.valueOf(chatId))
+                .text(replyTextService.getReplyMessage(chatData))
+                .replyMarkup(replyMarkupService.getReplyKeyboard(chatData))
+                .build();
     }
 
     private boolean isValidData(String data) {
