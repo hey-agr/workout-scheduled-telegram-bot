@@ -17,10 +17,11 @@ public class ReplyMarkupService {
         List<List<InlineKeyboardButton>> rowList = new ArrayList<>();
         InlineKeyboardMarkup inlineKeyboardMarkup = new InlineKeyboardMarkup();
         switch (chatDataModel.getChatState()) {
-            case MAIN_MENU:
-            default:
+            case MAIN_MENU: {
                 rowList.addAll(getMainMenuItems());
                 break;
+            }
+
         }
         inlineKeyboardMarkup.setKeyboard(rowList);
         return inlineKeyboardMarkup;
