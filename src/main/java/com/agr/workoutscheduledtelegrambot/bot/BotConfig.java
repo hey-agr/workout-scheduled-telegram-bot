@@ -18,11 +18,6 @@ public class BotConfig {
 	private String botPath;
 
 	@Bean
-	public WSTelegramBot wsTelegramBot() {
-		return new WSTelegramBot(botUsername, botToken, botPath);
-	}
-
-	@Bean
 	public MessageSource messageSource() {
 		ReloadableResourceBundleMessageSource messageSource = new ReloadableResourceBundleMessageSource();
 		messageSource.setBasename("classpath:messages");
