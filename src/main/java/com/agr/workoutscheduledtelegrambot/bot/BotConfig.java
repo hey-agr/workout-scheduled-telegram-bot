@@ -7,6 +7,9 @@ import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
+import org.telegram.telegrambots.meta.TelegramBotsApi;
+import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
+import org.telegram.telegrambots.updatesreceivers.DefaultBotSession;
 
 @Getter
 @Setter
@@ -23,5 +26,10 @@ public class BotConfig {
 		messageSource.setBasename("classpath:messages");
 		messageSource.setDefaultEncoding("UTF-8");
 		return messageSource;
+	}
+
+	@Bean
+	public TelegramBotsApi telegramBotsApi() throws TelegramApiException {
+		return new TelegramBotsApi(DefaultBotSession.class);
 	}
 }
