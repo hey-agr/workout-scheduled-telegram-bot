@@ -24,10 +24,7 @@ public class WSTelegramBot extends TelegramWebhookBot {
         this.communicationService = communicationService;
         this.botConfig = botConfig;
         this.telegramBotsApi = telegramBotsApi;
-        SetWebhook setWebhook = new SetWebhook(botConfig.getBotPath());
-        this.setWebhook(setWebhook);
-
-        telegramBotsApi.registerBot(this, setWebhook);
+        telegramBotsApi.registerBot(this, new SetWebhook(botConfig.getBotPath()));
     }
 
     @Override
