@@ -22,12 +22,12 @@ public class ReplyMarkupService {
         List<List<InlineKeyboardButton>> mainMenuItems = new ArrayList<>();
 
         ArrayList<InlineKeyboardButton> trainingProgramItems = new ArrayList<>();
-        InlineKeyboardButton trainingProgramButton = new InlineKeyboardButton().setText("Программы тренировок");
+        InlineKeyboardButton trainingProgramButton = new InlineKeyboardButton("Программы тренировок");
         trainingProgramButton.setCallbackData(ChatState.TRAINING_PROGRAMS.name());
         mainMenuItems.add(trainingProgramItems);
 
         ArrayList<InlineKeyboardButton> currentTrainingProgramItems = new ArrayList<>();
-        InlineKeyboardButton currentTrainingProgram = new InlineKeyboardButton().setText("Текущая тренировка");
+        InlineKeyboardButton currentTrainingProgram = new InlineKeyboardButton("Текущая тренировка");
         currentTrainingProgram.setCallbackData(ChatState.CURRENT_TRAINING_PROGRAM.name());
         mainMenuItems.add(currentTrainingProgramItems);
 

@@ -21,7 +21,7 @@ public class ChatDataMessageHandler {
 
     public SendMessage handleMessage(Long chatId, String data) {
         ChatDataModel chatData = chatDataCacheService.getCache(chatId);
-        SendMessage reply = new SendMessage(chatId, replyTextService.getReplyMessage(chatData));
+        SendMessage reply = new SendMessage(chatId.toString(), replyTextService.getReplyMessage(chatData));
         reply.setReplyMarkup(replyMarkupService.getReplyKeyboard(chatData));
         if (isValidData(data)) {
             chatData.setChatState(ChatState.valueOf(data));

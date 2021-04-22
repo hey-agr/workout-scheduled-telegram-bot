@@ -6,7 +6,9 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.telegram.telegrambots.bots.TelegramWebhookBot;
 import org.telegram.telegrambots.meta.api.methods.BotApiMethod;
+import org.telegram.telegrambots.meta.api.methods.updates.SetWebhook;
 import org.telegram.telegrambots.meta.api.objects.Update;
+import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
 @Slf4j
 @Getter
@@ -15,9 +17,11 @@ public class WSTelegramBot extends TelegramWebhookBot {
     private final CommunicationService communicationService;
     private final BotConfig botConfig;
 
-    public WSTelegramBot(CommunicationService communicationService, BotConfig botConfig) {
+    public WSTelegramBot(CommunicationService communicationService, BotConfig botConfig) throws TelegramApiException {
         this.communicationService = communicationService;
         this.botConfig = botConfig;
+
+        this.setWebhook(new SetWebhook(botConfig.getBotPath()));
     }
 
     @Override
