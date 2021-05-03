@@ -1,14 +1,18 @@
 package com.agr.workoutscheduledtelegrambot.db.entity;
 
 import com.agr.workoutscheduledtelegrambot.db.meta.WSMeta;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.Set;
 import java.util.UUID;
 
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 @Builder
 @Entity(name = WSMeta.training.name)
 @Table(schema = WSMeta.schema, name = WSMeta.training.name)
