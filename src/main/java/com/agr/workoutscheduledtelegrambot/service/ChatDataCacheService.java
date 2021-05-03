@@ -1,14 +1,12 @@
 package com.agr.workoutscheduledtelegrambot.service;
 
 import com.agr.workoutscheduledtelegrambot.db.entity.Training;
-import com.agr.workoutscheduledtelegrambot.db.entity.TrainingType;
 import com.agr.workoutscheduledtelegrambot.db.entity.User;
 import com.agr.workoutscheduledtelegrambot.model.ChatDataModel;
 import com.agr.workoutscheduledtelegrambot.model.ChatState;
 import com.sun.istack.NotNull;
 import org.springframework.stereotype.Service;
 
-import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 
 @Service
@@ -46,7 +44,7 @@ public class ChatDataCacheService {
                 Training training = trainingService.save(Training.builder()
                         .name(data)
                         .build());
-                user.getTrainings().add(training);
+                user.addTraining(training);
                 userService.save(user);
             }
         }

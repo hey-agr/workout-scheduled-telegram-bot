@@ -32,7 +32,7 @@ public class ReplyTextService {
     }
 
     private String mainMenuMessage(ChatDataModel chatDataModel) {
-        return "Добро пожаловать в главное меню!\n Выберите дальнейшее действие:";
+        return "Добро пожаловать в главное меню!\nВыберите дальнейшее действие:";
     }
 
     private String createTrainingMessage(ChatDataModel chatDataModel) {
