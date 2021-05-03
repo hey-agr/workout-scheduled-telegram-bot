@@ -9,6 +9,6 @@ import java.util.Optional;
 import java.util.UUID;
 
 public interface UserRepository extends JpaRepository<User, UUID> {
-    @Query("select distinct u from user u left join fetch u.trainings where u.chatId = :chatId")
+    @Query("SELECT u FROM user u left join fetch u.trainings where u.chatId = :chatId")
     Optional<User> getUserByChatIdWithTrainings(@Param("chatId") Long chatId);
 }

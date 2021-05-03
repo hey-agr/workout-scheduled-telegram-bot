@@ -40,7 +40,7 @@ public class ChatDataCacheService {
         } else {
             if (chatData.getChatState() == ChatState.CREATE_TRAINING && !data.isEmpty()) {
                 chatData.setChatState(ChatState.TRAINING_PROGRAMS);
-                User user = userService.getUserByChatIdWithTrainings(chatData.getChatId());
+                User user = userService.resolveUserByChatIdWithTrainings(chatData.getChatId());
                 Training training = trainingService.save(Training.builder()
                         .name(data)
                         .build());

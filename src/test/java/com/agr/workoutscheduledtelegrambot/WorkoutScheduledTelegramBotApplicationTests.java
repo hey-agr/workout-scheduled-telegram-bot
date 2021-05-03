@@ -4,7 +4,6 @@ import com.agr.workoutscheduledtelegrambot.db.entity.User;
 import com.agr.workoutscheduledtelegrambot.model.ChatDataModel;
 import com.agr.workoutscheduledtelegrambot.model.ChatState;
 import com.agr.workoutscheduledtelegrambot.service.ChatDataCacheService;
-import com.agr.workoutscheduledtelegrambot.service.ChatDataMessageHandler;
 import com.agr.workoutscheduledtelegrambot.service.UserService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,19 +25,22 @@ class WorkoutScheduledTelegramBotApplicationTests {
 
 	@Test
 	void testCreateOrFindUser() {
-		Long chatId = 12345L;
-		userService.getUserByChatIdWithTrainings(chatId);
-		Assert.notNull(userService.getUserByChatIdWithTrainings(chatId), "user with chatID=" + chatId + " is null");
+		Long testChatId = 12345L;
+		userService.resolveUserByChatIdWithTrainings(testChatId);
+		Assert.notNull(userService.resolveUserByChatIdWithTrainings(testChatId), "user with chatID=" + testChatId + " is null");
 	}
 
 	@Test
 	void testCreateTraining() {
 		final Long testChatId = 12345L;
 		final String testTrainingName = "new training12345";
+		final String testTrainingName1 = "new training1234543";
 		ChatDataModel chatDataModel = new ChatDataModel(testChatId);
 		chatDataModel.setChatState(ChatState.CREATE_TRAINING);
 		cacheService.doActions(chatDataModel, testTrainingName);
-		User user = userService.getUserByChatIdWithTrainings(testChatId);
+		chatDataModel.setChatState(ChatState.CREATE_TRAINING);
+		cacheService.doActions(chatDataModel, testTrainingName1);
+		User user = userService.resolveUserByChatIdWithTrainings(testChatId);
 		Assert.notNull(user, "user with chatID=" + testChatId + " is null");
 		Assert.notEmpty(user.getTrainings(), "user with chatID=" + testChatId + " has empty trainings");
 		Assert.isTrue(user.getTrainings().stream()

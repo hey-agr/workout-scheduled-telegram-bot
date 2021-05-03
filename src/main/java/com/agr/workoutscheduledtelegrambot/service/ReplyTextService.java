@@ -48,7 +48,7 @@ public class ReplyTextService {
     }
 
     private String trainingProgramsMessage(ChatDataModel chatDataModel) {
-        User user = userService.getUserByChatIdWithTrainings(chatDataModel.getChatId());
+        User user = userService.resolveUserByChatIdWithTrainings(chatDataModel.getChatId());
         StringBuilder sb = new StringBuilder("Список тренировок:\n");
         user.getTrainings().forEach(training -> {
             sb.append(training.getName()).append("\n");
