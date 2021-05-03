@@ -1,5 +1,6 @@
 package com.agr.workoutscheduledtelegrambot.db;
 
+import com.agr.workoutscheduledtelegrambot.db.meta.WSMeta;
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 import org.flywaydb.core.Flyway;
@@ -24,7 +25,9 @@ public class DatabaseConfig {
 
     @Bean("flyway")
     public Flyway flyway() {
-        FluentConfiguration fluentConfiguration = Flyway.configure().dataSource(dbUrl, dbUser, dbPassword);
+        FluentConfiguration fluentConfiguration = Flyway.configure()
+                .dataSource(dbUrl, dbUser, dbPassword)
+                .schemas(WSMeta.schema);
         Flyway flyway = fluentConfiguration.load();
         flyway.migrate();
         return flyway;

@@ -1,7 +1,6 @@
 package com.agr.workoutscheduledtelegrambot.service;
 
 import com.agr.workoutscheduledtelegrambot.model.ChatDataModel;
-import com.agr.workoutscheduledtelegrambot.model.ChatState;
 import org.springframework.stereotype.Service;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 
@@ -21,9 +20,7 @@ public class ChatDataMessageHandler {
 
     public SendMessage handleMessage(Long chatId, String data) {
         ChatDataModel chatData = chatDataCacheService.getCache(chatId);
-        if (isValidData(data)) {
-            chatData.setChatState(ChatState.valueOf(data));
-        }
+        chatDataCacheService.doActions(chatData, data);
         return SendMessage.builder()
                 .chatId(String.valueOf(chatId))
                 .text(replyTextService.getReplyMessage(chatData))
@@ -31,7 +28,4 @@ public class ChatDataMessageHandler {
                 .build();
     }
 
-    private boolean isValidData(String data) {
-        return ChatState.contains(data);
-    }
 }

@@ -6,8 +6,19 @@ plugins {
 }
 
 group = 'com.agr'
-version = '0.0.1-SNAPSHOT'
+version = '0.0.2'
 sourceCompatibility = '11'
+
+def local_postgres_url = System.getenv('WSTB_POSTGRES_URL')
+def db_user = System.getenv('WSTB_POSTGRES_USER')
+def db_password = System.getenv('WSTB_POSTGRES_PASSWORD')
+
+flyway {
+	url = local_postgres_url
+	user = db_user
+	password = db_password
+	schemas = ['main']
+}
 
 repositories {
 	mavenCentral()
