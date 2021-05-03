@@ -32,6 +32,10 @@ public class ChatDataCacheService {
         return cache.getOrDefault(chatId, initChatCache(chatId));
     }
 
+    public ChatDataModel putCache(@NotNull ChatDataModel chatDataModel) {
+        return cache.put(chatDataModel.getChatId(), chatDataModel);
+    }
+
     public void doActions(ChatDataModel chatData, String data) {
         if (isBackCommand(data)) {
             chatData.setChatState(resolvePrevState(chatData));
@@ -48,6 +52,7 @@ public class ChatDataCacheService {
                 userService.save(user);
             }
         }
+        putCache(chatData);
     }
 
     private ChatState resolvePrevState(ChatDataModel chatData) {
